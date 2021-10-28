@@ -50,6 +50,8 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <li class="nav-item"><a href="/projects" class="nav-link">المشاريع</a></li>
+
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">

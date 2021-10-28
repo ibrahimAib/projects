@@ -12,6 +12,9 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $selected0;
+    public $selected1;
+    public $selected2;
     public function index()
     {
         $projects = auth()->user()->projects;
@@ -53,7 +56,26 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('projects.show', compact('project'));
+        $selected0 = $this->selected0;
+        $selected0 = '';
+
+        $selected1 = $this->selected1;
+        $selected1 = '';
+
+        $selected2 = $this->selected2;
+        $selected2 = '';
+        switch ($project->status) {
+            case 0:
+                $selected0 = 'selected';
+                break;
+            case 1:
+                $selected1 = 'selected';
+                break;
+            case 2:
+                $selected2 = 'selected';
+                break;
+        }
+        return view('projects.show', compact('project', 'selected0', 'selected1', 'selected2'));
     }
 
     /**
@@ -76,7 +98,10 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $project->update([
+            'status' => request('status')
+        ]);
+        return back();
     }
 
     /**

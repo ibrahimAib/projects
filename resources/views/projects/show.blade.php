@@ -11,36 +11,43 @@
 <div class="row">
     <div class="col-lg-4 pe-3 text-right"  dir="rtl">
         <div class="card border-0 p-3 mb-3 shadow-sm" style="min-height: 300px">
-            <div class="stasus">
-                @switch($project->status)
-                    @case(1)
-                        <span class="text-success">تم التنفيذ</span>
-                        @break
-                    @case(2)
-                        <span class="text-dark">ملغي</span>
-                        @break
-                    @default
-                        <span class="text-danger">قيد التنفيذ</span>
-                @endswitch
-            </div>
-            <h3 class="card-title">{{ $project->name }}</h3>
-            <p class="card-text">{{ $project->description }}</p>
-            @include('projects.footer')
+                <div class="stasus">
+                    @switch($project->status)
+                        @case(1)
+                            <span class="text-success">تم التنفيذ</span>
+                            @break
+                        @case(2)
+                            <span class="text-dark">ملغي</span>
+                            @break
+                        @default
+                            <span class="text-danger">قيد التنفيذ</span>
+                    @endswitch
+                </div>
+                <h3 class="card-title">{{ $project->name }}</h3>
+                <p class="card-text">{{ $project->description }}</p>
+                <div class="mt-auto">
+                    @include('projects.footer')
+                </div>
         </div>
 
 
         <div class="card border-0 p-3 mb-3 shadow-sm">
             <div class="card-title">
                 <h3>تغيير حالة المشروع</h3>
+
+                <form action="/projects/{{ $project->id }}" method="post">
+                    @method('PATCH')
+                    @csrf
                 <div class="input-group">
-                    <select name="cars" class="form-control" id="cars">
-                        <option value="volvo">قيد التنفيذ</option>
-                        <option value="saab">ملغي</option>
-                        <option value="mercedes">تم التنفيذ</option>
+                    <select name="status" class="form-control" onchange="this.form.submit()">
+                        <option value="0" {{ $selected0 }}>قيد التنفيذ</option>
+                        <option value="2" {{ $selected2 }}>ملغي</option>
+                        <option value="1" {{ $selected1 }}>تم التنفيذ</option>
                     </select>
-                    <button type="button" class="btn btn-outline-secondary">تم</button>
+                    {{-- <button type="submit" class="btn btn-outline-secondary">تم</button> --}}
 
                 </div>
+            </form>
             </div>
 
         </div>
