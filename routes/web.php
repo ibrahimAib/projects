@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 use App\Models\Project;
+use App\Models\Task;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +25,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('/projects', ProjectController::class)->middleware('auth');
-
+Route::resource('/tasks', TaskController::class)->Middleware('auth');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/projects/{project}/tasks', [TaskController::class, 'store']);

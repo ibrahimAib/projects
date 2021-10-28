@@ -5,7 +5,7 @@
     @csrf
     <div class="mb-3">
         <label for="name" class="form-label">أسم المشروع</label>
-        <input name="name" class="form-control" id="name">
+        <input name="name" class="form-control" id="name" autofocus="autofocus" >
     </div>
 
     <div class="mb-3">
