@@ -86,7 +86,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $project;
+        return view('projects.edit', compact('project'));
     }
 
     /**
@@ -99,7 +100,17 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $project->update([
-            'status' => request('status')
+            'name' => request('name'),
+            'description' => request('description'),
+        ]);
+        return back();
+    }
+
+
+    public function status(Request $request, Project $project)
+    {
+        $project->update([
+            'status' => request('status'),
         ]);
         return back();
     }

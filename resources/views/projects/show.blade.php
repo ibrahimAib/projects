@@ -4,7 +4,7 @@
     
 
 <div class="d-flex justify-content-between">
-    <h3 class="text-gray">المشاريع/{{ $project->name }}</h3>
+    <h3 class="text-gray"><a href="/projects">المشاريع/</a>{{ $project->name }}</h3>
     <a href="/projects/{{ $project->id }}/edit" class="btn btn-primary">تعديل المشروع</a>
 </div>
 <section class="py-3">
@@ -35,9 +35,8 @@
             <div class="card-title">
                 <h3>تغيير حالة المشروع</h3>
 
-                <form action="/projects/{{ $project->id }}" method="post">
-                    @method('PATCH')
-                    @csrf
+                <form action="/projects/{{ $project->id }}/status" method="post">
+                @csrf
                 <div class="input-group">
                     <select name="status" class="form-control" onchange="this.form.submit()">
                         <option value="0" {{ $selected0 }}>قيد التنفيذ</option>

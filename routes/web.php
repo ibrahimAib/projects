@@ -26,6 +26,9 @@ Auth::routes();
 
 Route::resource('/projects', ProjectController::class)->middleware('auth');
 Route::resource('/tasks', TaskController::class)->Middleware('auth');
+
+Route::post('/projects/{project}/status', [ProjectController::class, 'status']);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/projects/{project}/tasks', [TaskController::class, 'store']);
